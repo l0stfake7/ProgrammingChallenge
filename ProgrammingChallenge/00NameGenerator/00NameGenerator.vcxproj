@@ -146,7 +146,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CGenerator.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="CName.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CGenerator.h" />
+    <ClInclude Include="CName.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
