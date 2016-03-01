@@ -5,7 +5,6 @@ Features: add names, find names, generate random name from base, generate names 
 
 int main()
 {
-	//To-do: write menu class to control program
 	std::cout << "\t\t\tName Generator" << std::endl << std::endl;
 	std::cout << "Menu" << std::endl;
 	std::cout << "1. Add name" << std::endl << "2. Remove name" << std::endl << "3. Find name" 	<< std::endl
