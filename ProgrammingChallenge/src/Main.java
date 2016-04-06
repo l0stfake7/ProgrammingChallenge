@@ -29,6 +29,8 @@ public class Main {
 			System.out.println(testval);
 			x++;
 		}
+		
+		int a = 0;
 	}
 
 }
