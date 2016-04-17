@@ -23,7 +23,7 @@ public class Main {
 		NameGenerator ng = new NameGenerator(a, b);
 		System.out.println(ng.getName());
 		
-		
+		scanner.close();
 	}
 
 }
