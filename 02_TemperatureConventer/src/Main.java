@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -40,14 +41,22 @@ public class Main {
 				throw new MyException("Bad chose, same scales!");
 			}
 			
+			System.out.println("Type temperature (use \",\" instead \".\")");
 			float temperature = scanner.nextFloat();
-			System.out.println(TemperatureConverter.ConverterTemperature(temperature, TemperatureScale.valueOf(scaleSource), TemperatureScale.valueOf(scaleDestination)));
+			
+			System.out.println(TemperatureConverter.ConverterTemperature(temperature, TemperatureScale.valueOf(scaleSource.toUpperCase()), TemperatureScale.valueOf(scaleDestination.toUpperCase())));
 			scanner.close();
 		
 		}
 		catch(MyException me) {
-			me.printStackTrace();
+			System.out.print(me.getMessage());
 		}	
+		catch(InputMismatchException ime) {
+			System.out.print(ime.getMessage());
+		}
+		catch(Exception e) {
+			System.out.print(e.getMessage());		
+		}
 		
 	}
 
