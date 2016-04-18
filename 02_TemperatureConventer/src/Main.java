@@ -6,30 +6,48 @@ public class Main {
 	/**
 	 * @param args
 	 */
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		Scanner scanner = new Scanner(System.in);
+		// TODO Auto-generated method stub		
 		
-		System.out.println("Programming Challenge - 02 - Temperature Conventer");
-		System.out.println("Type source scale (a - Celsius, b - Fahrenheit or c - Kelvin)");
-		char scaleSource = scanner.next().charAt(0);
-		
-		System.out.println("Type destination scale (a - Celsius, b - Fahrenheit or c - Kelvin)");
-		char scaleDestination = scanner.next().charAt(0);
-
-		if((scaleSource == 'a' || scaleSource == 'b' || scaleSource == 'c') && 
-		  (scaleDestination == 'a' || scaleDestination == 'b' || scaleDestination == 'c')) {
-			System.out.println("Type temperature in floating point");
-			float temperature = scanner.nextFloat();
+		try {
 			
-			TemperatureConverter.ConverterTemperature(temperature, TemperatureScale.Celsius, TemperatureScale.Celsius);
-		}		
-		else {
-			System.out.println("Bad char, try again");
-		}
+			Scanner scanner = new Scanner(System.in);
+			
+			System.out.println("Programming Challenge - 02 - Temperature Conventer");
+			System.out.println("Type source scale (Celsius, Fahrenheit or Kelvin)");
+			String scaleSource = scanner.next();
 
-		scanner.close();
+			System.out.println("Type destination scale (Celsius, Fahrenheit or Kelvin)");
+			String scaleDestination = scanner.next();
+
+			boolean[] match = new boolean[2];
+			for(TemperatureScale ts: TemperatureScale.values()) {
+				
+				if(scaleSource.equalsIgnoreCase(ts.toString())) {
+					match[0] = true;
+					continue;									
+				}
+				else if(scaleDestination.equalsIgnoreCase(ts.toString())) {
+					match[1] = true;
+					continue;
+				}				
+			}
+			if(match[0] == false || match[1] == false) {
+				throw new MyException("Bad chose, available scales(Celsius, Fahrenheit or Kelvin)!");
+			}
+			if(scaleSource.equals(scaleDestination)) {
+				throw new MyException("Bad chose, same scales!");
+			}
+			
+			float temperature = scanner.nextFloat();
+			System.out.println(TemperatureConverter.ConverterTemperature(temperature, TemperatureScale.valueOf(scaleSource), TemperatureScale.valueOf(scaleDestination)));
+			scanner.close();
+		
+		}
+		catch(MyException me) {
+			me.printStackTrace();
+		}	
 		
 	}
 
