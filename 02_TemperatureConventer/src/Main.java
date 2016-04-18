@@ -4,10 +4,6 @@ import java.util.Scanner;
 
 public class Main {
 
-	/**
-	 * @param args
-	 */
-	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub		
 		
@@ -22,19 +18,19 @@ public class Main {
 			System.out.println("Type destination scale (Celsius, Fahrenheit or Kelvin)");
 			String scaleDestination = scanner.next();
 
-			boolean[] match = new boolean[2];
+			boolean[] isMatch = new boolean[2];
 			for(TemperatureScale ts: TemperatureScale.values()) {
 				
-				if(scaleSource.equalsIgnoreCase(ts.toString())) {
-					match[0] = true;
+				if(scaleSource.toUpperCase().equals(ts.toString())) {
+					isMatch[0] = true;
 					continue;									
 				}
-				else if(scaleDestination.equalsIgnoreCase(ts.toString())) {
-					match[1] = true;
+				else if(scaleDestination.toUpperCase().equals(ts.toString())) {
+					isMatch[1] = true;
 					continue;
 				}				
 			}
-			if(match[0] == false || match[1] == false) {
+			if(isMatch[0] == false || isMatch[1] == false) {
 				throw new MyException("Bad chose, available scales(Celsius, Fahrenheit or Kelvin)!");
 			}
 			if(scaleSource.equals(scaleDestination)) {
@@ -42,9 +38,21 @@ public class Main {
 			}
 			
 			System.out.println("Type temperature (use \",\" instead \".\")");
-			float temperature = scanner.nextFloat();
+			double temperature = scanner.nextDouble();
 			
-			System.out.println(TemperatureConverter.ConverterTemperature(temperature, TemperatureScale.valueOf(scaleSource.toUpperCase()), TemperatureScale.valueOf(scaleDestination.toUpperCase())));
+			double convertTemperature = TemperatureConverter.ConverterTemperature(temperature, TemperatureScale.valueOf(scaleSource.toUpperCase()), TemperatureScale.valueOf(scaleDestination.toUpperCase()));
+			
+			StringBuilder test = new StringBuilder("Temperature ");
+			test.append(temperature);
+			test.append(" in ");
+			test.append(scaleSource);
+			test.append(" is ");
+			test.append(convertTemperature);
+			test.append(" in ");
+			test.append(scaleDestination);			
+			
+			System.out.println(test);
+			
 			scanner.close();
 		
 		}
