@@ -12,7 +12,7 @@ public class Main {
 			System.out.println("Programming Challenge - 03 - Calculate age in second");
 					
 			Scanner scanner = new Scanner(System.in);
-			short age = 0;
+			int age = 0;
 			
 			System.out.println("Type your age");
 			
@@ -21,6 +21,8 @@ public class Main {
 			System.out.print("Your age: ");
 			System.out.print(age);
 			System.out.print(" is ");
+			System.out.print(AgeConverter.getAgeInSecond(age));
+			System.out.print(" second");
 		
 			scanner.close();
 		}
